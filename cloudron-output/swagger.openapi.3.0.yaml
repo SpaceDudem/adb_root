@@ -9,7 +9,18 @@
     }
   },
   "servers" : [ {
-    "url" : "https://my.example.com/api/v1"
+    "url" : "https://my.{domain}/api/v1/{api}",
+    "variables" : {
+      "domain" : {
+        "description" : "Domain",
+        "default" : "galvestonhumane.org",
+        "enum" : [ "" ]
+      },
+      "api" : {
+        "description" : "pass the key please",
+        "default" : "?access_tokene772df294140137dc9c933e5e0d18899381a43125aed1505b6eeafca991eef6f"
+      }
+    }
   } ],
   "tags" : [ {
     "name" : "Cloudron"
@@ -512,7 +523,7 @@
         }
       }
     },
-    "/apps/{appid}" : {
+    "/apps/{AppId}" : {
       "get" : {
         "tags" : [ "Apps" ],
         "summary" : "Get installed app",
@@ -541,7 +552,7 @@
         }
       }
     },
-    "/apps/{appid}/restart" : {
+    "/apps/{AppId}/restart" : {
       "post" : {
         "tags" : [ "Apps" ],
         "summary" : "Restart app",
@@ -571,7 +582,7 @@
         }
       }
     },
-    "/apps/{appid}/start" : {
+    "/apps/{AppId}/start" : {
       "post" : {
         "tags" : [ "Apps" ],
         "summary" : "Start app",
@@ -601,7 +612,7 @@
         }
       }
     },
-    "/apps/{appid}/configure/access_restriction" : {
+    "/apps/{AppID}/configure/access_restriction" : {
       "post" : {
         "tags" : [ "Apps" ],
         "summary" : "ACL settings",
@@ -633,7 +644,7 @@
         }
       }
     },
-    "/apps/{appid}/configure/location" : {
+    "/apps/{AppID}/configure/location" : {
       "post" : {
         "tags" : [ "Apps" ],
         "summary" : "Location settings",
@@ -672,7 +683,7 @@
         }
       }
     },
-    "/apps/{appid}/configure/memory_limit" : {
+    "/apps/{AppId}/configure/memory_limit" : {
       "post" : {
         "tags" : [ "Apps" ],
         "summary" : "Set the memory limit",
@@ -711,7 +722,7 @@
         }
       }
     },
-    "/apps/{appid}/configure/automatic_backup" : {
+    "/apps/{AppId}/configure/automatic_backup" : {
       "post" : {
         "tags" : [ "Apps" ],
         "summary" : "Set the automatic backup",
@@ -750,7 +761,7 @@
         }
       }
     },
-    "/apps/{appid}/stop" : {
+    "/apps/{AppId}/stop" : {
       "post" : {
         "tags" : [ "Apps" ],
         "summary" : "Stop app",
@@ -780,7 +791,7 @@
         }
       }
     },
-    "/apps/{appid}/backup" : {
+    "/apps/{AppId}/backup" : {
       "post" : {
         "tags" : [ "Apps" ],
         "summary" : "Backup app",
@@ -810,7 +821,7 @@
         }
       }
     },
-    "/apps/{appid}/backups" : {
+    "/apps/{AppId}/backups" : {
       "get" : {
         "tags" : [ "Apps" ],
         "summary" : "List app backups",
@@ -864,7 +875,7 @@
         }
       }
     },
-    "/apps/{appid}/backups/{backupId}" : {
+    "/apps/{AppId}/backups/{backupId}" : {
       "post" : {
         "tags" : [ "Apps" ],
         "summary" : "Update app backup",
@@ -907,7 +918,7 @@
         }
       }
     },
-    "/apps/{appid}/restore" : {
+    "/apps/{AppId}/restore" : {
       "post" : {
         "tags" : [ "Apps" ],
         "summary" : "Restore app",
@@ -927,7 +938,7 @@
           "content" : {
             "application/json" : {
               "schema" : {
-                "$ref" : "#/components/schemas/appid_restore_body"
+                "$ref" : "#/components/schemas/AppId_restore_body"
               }
             }
           }
@@ -946,11 +957,11 @@
         }
       }
     },
-    "/apps/{appid}/clone" : {
+    "/apps/{AppId}/clone" : {
       "post" : {
         "tags" : [ "Apps" ],
         "summary" : "Clone app",
-        "description" : "Clone app identified by appid from a backup to a new instance with the same version and data",
+        "description" : "Clone app identified by AppId from a backup to a new instance with the same version and data",
         "parameters" : [ {
           "name" : "appId",
           "in" : "path",
@@ -966,7 +977,7 @@
           "content" : {
             "application/json" : {
               "schema" : {
-                "$ref" : "#/components/schemas/appid_clone_body"
+                "$ref" : "#/components/schemas/AppId_clone_body"
               }
             }
           }
@@ -985,7 +996,7 @@
         }
       }
     },
-    "/apps/{appid}/logs" : {
+    "/apps/{AppId}/logs" : {
       "get" : {
         "tags" : [ "Apps" ],
         "summary" : "Get App Logs",
@@ -1038,7 +1049,7 @@
         }
       }
     },
-    "/apps/{appid}/logstream" : {
+    "/apps/{AppId}/logstream" : {
       "get" : {
         "tags" : [ "Apps" ],
         "summary" : "Get App Logstream",
@@ -1091,7 +1102,7 @@
         }
       }
     },
-    "/apps/{appid}/uninstall" : {
+    "/apps/{AppId}/uninstall" : {
       "post" : {
         "tags" : [ "Apps" ],
         "summary" : "Uninstall app",
@@ -4217,7 +4228,7 @@
           }
         }
       },
-      "appid_restore_body" : {
+      "AppId_restore_body" : {
         "type" : "object",
         "properties" : {
           "backupId" : {
@@ -4235,7 +4246,7 @@
           }
         }
       },
-      "appid_clone_body" : {
+      "AppId_clone_body" : {
         "required" : [ "backupId", "domain", "subdomain" ],
         "type" : "object",
         "properties" : {
